@@ -30,17 +30,17 @@ class Chatroom {
           .onSnapshot(snapshot =>{
             snapshot.docChanges().forEach(change =>{
                 if(change.type === 'added'){
-                    //console.log(change)
+                  //update the ui
                     callback(change.doc.data());
-                }
-            })
-        })
+                   }
+            });
+        });
   }
-
+//updating user
   updateUsername(username){
     this.username = username;
   }
-
+//updating room
   updateRoom(room){
     this.room = room;
     console.log('room update')
