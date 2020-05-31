@@ -52,17 +52,5 @@ class Chatroom {
   
 }
 
-const chatroom = new Chatroom("general", "rio");
 
-setTimeout(()=>{
-  chatroom.updateRoom('gaming');
-  chatroom.updateUsername('tracy');
 
-  chatroom.getChats((data)=>{
-    console.log(data)
-  });
-  chatroom.getChats('hello');
-
-}, 3000)
-//upadating the user
-//updating the room
