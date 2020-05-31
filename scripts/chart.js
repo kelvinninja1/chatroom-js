@@ -5,6 +5,7 @@ class Chatroom {
     this.room = room;
     this.username = username;
     this.chats = db.collection("chat");
+    this.unsub;
   }
 
   async addChat(message) {
@@ -21,14 +22,47 @@ class Chatroom {
     const response = await this.chats.add(chat);
     return response;
   }
+  //setting up real-time listener t0 get new chats
+  getChats(callback){
+      this.unsub = this.chats
+          .where('room', '==', this.room)
+          .orderBy('created_at')
+          .onSnapshot(snapshot =>{
+            snapshot.docChanges().forEach(change =>{
+                if(change.type === 'added'){
+                    //console.log(change)
+                    callback(change.doc.data());
+                }
+            })
+        })
+  }
+
+  updateUsername(username){
+    this.username = username;
+  }
+
+  updateRoom(room){
+    this.room = room;
+    console.log('room update')
+    if(this.unsub){
+      this.unsub();
+    }
+
+  }
+  
 }
 
-const chatroom = new Chatroom("gaming", "rio");
-chatroom
-  .addChat("Hello everyone")
-  .then(() => console.log("chat added"))
-  .catch((err) => console.log(err));
+const chatroom = new Chatroom("general", "rio");
 
-//setting up real-time listener t0 get new chats
+setTimeout(()=>{
+  chatroom.updateRoom('gaming');
+  chatroom.updateUsername('tracy');
+
+  chatroom.getChats((data)=>{
+    console.log(data)
+  });
+  chatroom.getChats('hello');
+
+}, 3000)
 //upadating the user
 //updating the room
