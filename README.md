@@ -5,5 +5,7 @@ This is a simple chat website that has different chatrooms that people can commu
 This can be based on the topic of discussion:
  <ul> 
   <li> General</li>
-  <li> </li>
+  <li>Music </li>
+ <li> Gaming</li>
+ <li> Ninja</li>
 </ul>
