@@ -1,6 +1,6 @@
 # chatroom-js
 
-![Project Image](img/image.png width = "900")
+![Project Image](img/image.png)
 
 > This is a screenshot from the gaming room
 
