@@ -2,7 +2,7 @@
 
 ![Project Image](img/image.png);
 
-> This is a screenshot from one of the gaming room
+> This is a screenshot from the gaming room
 
 ---
 
